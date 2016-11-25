@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="campaign-api" />
+        <module name="campaign-process" />
+        <module name="campaign-services" />
+        <module name="framework-api" />
+        <module name="i-send-pro" />
+        <module name="sms-campaign-container" />
+        <module name="sms-core-api" />
+        <module name="sms-core-process" />
+        <module name="sms-core-services" />
+        <module name="user-module-api" />
+        <module name="user-module-process" />
+        <module name="user-module-services" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="campaign" target="1.5" />
+      <module name="campaign-api" target="1.5" />
+      <module name="campaign-process" target="1.5" />
+      <module name="campaign-services" target="1.5" />
+      <module name="framework-api" target="1.5" />
+      <module name="i-send-pro" target="1.5" />
+      <module name="sms-campaign" target="1.5" />
+      <module name="sms-campaign-container" target="1.5" />
+      <module name="sms-core" target="1.5" />
+      <module name="sms-core-api" target="1.5" />
+      <module name="sms-core-process" target="1.5" />
+      <module name="sms-core-services" target="1.5" />
+      <module name="third-parties" target="1.5" />
+      <module name="user-module" target="1.5" />
+      <module name="user-module-api" target="1.5" />
+      <module name="user-module-process" target="1.5" />
+      <module name="user-module-services" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

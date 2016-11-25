@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/campaign/campaign.iml" filepath="$PROJECT_DIR$/campaign/campaign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/campaign/campaign-api/campaign-api.iml" filepath="$PROJECT_DIR$/campaign/campaign-api/campaign-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/campaign/campaign-process/campaign-process.iml" filepath="$PROJECT_DIR$/campaign/campaign-process/campaign-process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" filepath="$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework-api/framework-api.iml" filepath="$PROJECT_DIR$/framework-api/framework-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" filepath="$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sms-campaign.iml" filepath="$PROJECT_DIR$/.idea/sms-campaign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-campaign-container/sms-campaign-container.iml" filepath="$PROJECT_DIR$/sms-campaign-container/sms-campaign-container.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-core/sms-core.iml" filepath="$PROJECT_DIR$/sms-core/sms-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-core/sms-core-api/sms-core-api.iml" filepath="$PROJECT_DIR$/sms-core/sms-core-api/sms-core-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-core/sms-core-process/sms-core-process.iml" filepath="$PROJECT_DIR$/sms-core/sms-core-process/sms-core-process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-core/sms-core-services/sms-core-services.iml" filepath="$PROJECT_DIR$/sms-core/sms-core-services/sms-core-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/third-parties/third-parties.iml" filepath="$PROJECT_DIR$/third-parties/third-parties.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-module/user-module.iml" filepath="$PROJECT_DIR$/user-module/user-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-module/user-module-api/user-module-api.iml" filepath="$PROJECT_DIR$/user-module/user-module-api/user-module-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-module/user-module-process/user-module-process.iml" filepath="$PROJECT_DIR$/user-module/user-module-process/user-module-process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-module/user-module-services/user-module-services.iml" filepath="$PROJECT_DIR$/user-module/user-module-services/user-module-services.iml" />
+    </modules>
+  </component>
+</project>

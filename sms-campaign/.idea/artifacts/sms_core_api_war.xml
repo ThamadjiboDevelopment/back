@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sms-core-api:war">
+    <output-path>$PROJECT_DIR$/sms-core/sms-core-api/target</output-path>
+    <root id="archive" name="sms-campaign.war">
+      <element id="artifact" artifact-name="sms-core-api:war exploded" />
+    </root>
+  </artifact>
+</component>

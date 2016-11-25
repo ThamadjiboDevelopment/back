@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1473262447389" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../oslo-services/oslo-settings/oslo_formatter.xml" />
+    <option name="selectedJavaProfile" value="ORANGE BANK Formatter Profile" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file url="file://$PROJECT_DIR$/sms-campaign-container/overlays" />
+    <file type="web" url="file://$PROJECT_DIR$/campaign/campaign-api" />
+    <file type="web" url="file://$PROJECT_DIR$/sms-campaign-container" />
+    <file type="web" url="file://$PROJECT_DIR$/sms-core/sms-core-api" />
+    <file type="web" url="file://$PROJECT_DIR$/user-module/user-module-api" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/framework-api/pom.xml" />
+        <option value="$PROJECT_DIR$/user-module/user-module-services/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-core/sms-core-process/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-core/sms-core-api/pom.xml" />
+        <option value="$PROJECT_DIR$/user-module/user-module-api/pom.xml" />
+        <option value="$PROJECT_DIR$/user-module/user-module-process/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-core/sms-core-services/pom.xml" />
+        <option value="$PROJECT_DIR$/user-module/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-campaign-container/pom.xml" />
+        <option value="$PROJECT_DIR$/sms-core/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" assert-keyword="false" jdk-15="false" />
+</project>
