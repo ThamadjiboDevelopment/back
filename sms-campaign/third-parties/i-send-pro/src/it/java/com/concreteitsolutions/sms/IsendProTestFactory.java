@@ -3,8 +3,6 @@ package com.concreteitsolutions.sms;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.concreteitsolutions.sms.model.sms.MultipleSMS;
-
 public class IsendProTestFactory {
 
 	public static final String UNIQUE_SMS_TEL_ME = "0635338517";
@@ -15,7 +13,7 @@ public class IsendProTestFactory {
 
 	public static final String UNIQUE_SMS_CONTENT =
 			"TEST- CAMPAGNE SMS Tahirou \n Jouez à notre jeu et gagnez beaucoup de cadeaux jusqu'au 25 Décembre 2015.\n"
-					+ "Rendez-vous sur ce lien pour jouer : http://google.fr";
+					+ "Rens cadeaux: http://google.fr";
 
 	public static final String UNIQUE_SMS_SENDER = "Info 83";
 

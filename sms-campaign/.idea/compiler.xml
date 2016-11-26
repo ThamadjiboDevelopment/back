@@ -27,6 +27,8 @@
         <module name="campaign-services" />
         <module name="framework-api" />
         <module name="i-send-pro" />
+        <module name="prospect-process" />
+        <module name="prospect-services" />
         <module name="sms-campaign-container" />
         <module name="sms-core-api" />
         <module name="sms-core-process" />
@@ -42,7 +44,10 @@
       <module name="campaign-process" target="1.5" />
       <module name="campaign-services" target="1.5" />
       <module name="framework-api" target="1.5" />
-      <module name="i-send-pro" target="1.5" />
+      <module name="i-send-pro" target="1.7" />
+      <module name="prospect" target="1.5" />
+      <module name="prospect-process" target="1.5" />
+      <module name="prospect-services" target="1.5" />
       <module name="sms-campaign" target="1.5" />
       <module name="sms-campaign-container" target="1.5" />
       <module name="sms-core" target="1.5" />

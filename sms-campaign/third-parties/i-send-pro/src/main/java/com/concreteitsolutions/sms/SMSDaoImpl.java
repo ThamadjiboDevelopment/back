@@ -1,18 +1,22 @@
 package com.concreteitsolutions.sms;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.concreteitsolutions.sms.model.sms.MultipleSMS;
-import com.concreteitsolutions.sms.model.sms.SMSResponse;
-import com.concreteitsolutions.sms.model.sms.SingleSMS;
+import com.concreteitsolutions.sms.model.MultipleSMS;
+import com.concreteitsolutions.sms.model.SMSResponse;
+import com.concreteitsolutions.sms.model.SingleSMS;
 
 public class SMSDaoImpl implements SMSDao {
 
@@ -34,23 +38,31 @@ public class SMSDaoImpl implements SMSDao {
 		this.iSendProClient = iSendProClient;
 	}
 
-	public void sendOne(final String telNumber, final String smsContent, final String sender) {
+	public void sendOne(final String telNumber, final String smsContent, final String sender) throws IOException {
+
 		SingleSMS singleSms = new SingleSMS(KEY_ID, smsContent, telNumber, sender);
 
 		try {
 			RequestEntity<SingleSMS> singleSMSRequest = RequestEntity.post(new URI(HOST + SINGLE_SMS_PATH))
 					.contentType(MediaType.APPLICATION_JSON).body(singleSms);
 
-			ResponseEntity<SMSResponse> smsResponse = iSendProClient.exchange(singleSMSRequest, SMSResponse.class);
+			ResponseEntity<SMSResponse> smsResponseResponseEntity = iSendProClient.exchange(singleSMSRequest, SMSResponse.class);
+	//		ResponseEntity<String> smsResponseResponseEntity = iSendProClient.exchange(singleSMSRequest, String.class);
 
-			System.out.println("Sms response : " + smsResponse.toString());
+			System.out.println("Sms response : " + smsResponseResponseEntity.toString());
 
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
+		} catch(HttpClientErrorException e) {
+			System.out.println("erreur requete");
+			System.out.println(e.getResponseBodyAsString());
+			SMSResponse smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
+			System.out.println(smsResponseError);
 		}
 	}
 
 	public void sendMultiple(final List<String> phoneNumberList, final String smsContent, final String sender) {
+		System.out.println("Sending multiple sms");
 		MultipleSMS multipleSMS = new MultipleSMS(KEY_ID, phoneNumberList, smsContent, sender);
 
 		try {
@@ -66,4 +78,13 @@ public class SMSDaoImpl implements SMSDao {
 		}
 	}
 
+	private SMSResponse retrieveSMSResponseErrorFromJson(String smsResponseString) throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		SMSResponse smsResponse = new SMSResponse();
+
+		smsResponse = objectMapper.readValue(smsResponseString, SMSResponse.class);
+
+		System.out.println("Deserializing .. :"+smsResponse);
+		return smsResponse;
+	}
 }

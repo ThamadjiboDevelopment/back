@@ -1,5 +1,6 @@
 package com.concreteitsolutions.sms;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class SMSDaoImplIT {
 	RestTemplate client;
 
 	@Test
-	public void should_send_one_sms(){
+	public void should_send_one_sms() throws IOException {
 		// Given
 		String phoneNumber = IsendProTestFactory.UNIQUE_SMS_TEL_ME;
 		String sms = IsendProTestFactory.UNIQUE_SMS_CONTENT;
@@ -30,7 +31,6 @@ public class SMSDaoImplIT {
 		smsDaoImpl.sendOne(phoneNumber,sms, sender);
 
 		//Assert
-
 
 	}
 

@@ -11,6 +11,7 @@
 		<module>campaign</module>
 		<module>framework-api</module>
 		<module>user-module</module>
+		<module>prospect</module>
 		<module>sms-campaign-container</module>
 		<module>third-parties</module>
 
@@ -53,11 +54,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 			<version>1.2.8.RELEASE</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot</artifactId>
@@ -94,8 +95,8 @@
 	</dependencies>
 
 	<dependencyManagement>
-		<!-- USER MODULE -->
 		<dependencies>
+			<!-- USER MODULE -->
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>user-module</artifactId>
@@ -120,6 +121,30 @@
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>framework-api</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+
+			<!-- CAMPAIGN-->
+
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>campaign</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>campaign-api</artifactId>
+				<type>war</type>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>campaign-process</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>campaign-services</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 
@@ -169,6 +194,23 @@
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>campaign-services</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+
+			<!-- PROSPECT -->
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>prospect</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>prospect-process</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>prospect-services</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 

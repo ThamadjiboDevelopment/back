@@ -1,4 +1,4 @@
-package com.concreteitsolutions.sms.model.sms;
+package com.concreteitsolutions.sms.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

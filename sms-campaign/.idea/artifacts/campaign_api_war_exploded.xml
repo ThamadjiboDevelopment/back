@@ -18,6 +18,18 @@
           <element id="archive" name="sms-core-services-1.0.0-SNAPSHOT.jar">
             <element id="module-output" name="sms-core-services" />
           </element>
+          <element id="archive" name="campaign-process-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="campaign-process" />
+          </element>
+          <element id="archive" name="campaign-services-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="campaign-services" />
+          </element>
+          <element id="archive" name="prospect-process-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="prospect-process" />
+          </element>
+          <element id="archive" name="prospect-services-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="prospect-services" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.2.RELEASE" />
@@ -29,8 +41,6 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.0" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.2.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.14" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.4.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.10" />

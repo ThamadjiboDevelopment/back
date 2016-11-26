@@ -13,20 +13,23 @@ import java.util.List;
 @RequestMapping("/campaigns")
 public interface SMSCampaignController {
 
+	@RequestMapping(value = "/{reference}/send", method = RequestMethod.POST)
+	String sendCampaign(@PathVariable("reference") final long reference);
+
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	String create(SMSCampaignView smsCampaignView);
 
 	@RequestMapping(value = "/search/{reference}", method = RequestMethod.GET)
-	SMSCampaignView findByReference(@PathVariable("reference") long reference);
+	SMSCampaignView findByReference(@PathVariable("reference") final long reference);
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	List<SMSCampaignView> find(SMSCampaignSearchView smsCampaignSearchView);
+	List<SMSCampaignView> find(final SMSCampaignSearchView smsCampaignSearchView);
 
 	@RequestMapping(value = "/{reference}/edit", method = RequestMethod.PATCH)
-	SMSCampaignView editSMSCampaign(@PathVariable("reference") long reference, SMSCampaignView smsCampaignView);
+	SMSCampaignView editSMSCampaign(@PathVariable("reference") final long reference, final SMSCampaignView smsCampaignView);
 
 	@RequestMapping(value = "/{reference}", method = RequestMethod.POST)
-	String find(@PathVariable("reference") long reference);
+	String find(@PathVariable("reference") final long reference);
 
 	/**
 	 * TODO: Create a controller for unknown paths

@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" filepath="$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework-api/framework-api.iml" filepath="$PROJECT_DIR$/framework-api/framework-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" filepath="$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prospect/prospect.iml" filepath="$PROJECT_DIR$/prospect/prospect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prospect/prospect-process/prospect-process.iml" filepath="$PROJECT_DIR$/prospect/prospect-process/prospect-process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prospect/prospect-services/prospect-services.iml" filepath="$PROJECT_DIR$/prospect/prospect-services/prospect-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sms-campaign.iml" filepath="$PROJECT_DIR$/.idea/sms-campaign.iml" />
       <module fileurl="file://$PROJECT_DIR$/sms-campaign-container/sms-campaign-container.iml" filepath="$PROJECT_DIR$/sms-campaign-container/sms-campaign-container.iml" />
       <module fileurl="file://$PROJECT_DIR$/sms-core/sms-core.iml" filepath="$PROJECT_DIR$/sms-core/sms-core.iml" />

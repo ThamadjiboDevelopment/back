@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SMSCampaign {
 
-	private long reference;
+	private final long reference;
 
-	private String name;
+	private final String name;
 
-	private String customerName;
+	private final String customerName;
 
-	private String smsContent;
+	private final String smsContent;
 
-	private int prospectQuantity;
+	private final Integer prospectsLength;
 }

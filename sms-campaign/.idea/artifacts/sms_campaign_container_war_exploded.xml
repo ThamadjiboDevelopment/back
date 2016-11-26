@@ -18,8 +18,6 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.0" />
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.2.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.14" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:1.4.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.10" />
@@ -39,6 +37,7 @@
       <element id="javaee-facet-resources" facet="sms-campaign-container/web/Web" />
       <element id="artifact" artifact-name="sms-core-api:war exploded" />
       <element id="artifact" artifact-name="user-module-api:war exploded" />
+      <element id="artifact" artifact-name="campaign-api:war exploded" />
     </root>
   </artifact>
 </component>
