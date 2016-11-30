@@ -2,6 +2,7 @@ package com.concreteitsolutions.smscampaign;
 
 import java.util.List;
 
+import com.concreteitsolutions.sms.SMSCoreFunctionalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +21,17 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 	}
 
 	public String sendCampaign(@PathVariable("reference") long reference) {
-		smsCampaignProcess.send(reference);
+		try {
+			smsCampaignProcess.send(reference);
+			return "campagn sent";
+		} catch (SMSCampaignFunctionalException e){
 
-		return "campagn sent";
+			System.out.println("SMS Campaign exception catched with code : "+e.getError() +" and message = "+ e.getError().message()+" and developerMessage : "+e.getMessage());
+			return "error catched";
+		} catch(SMSCoreFunctionalException e){
+			System.out.println("SMS core exception catched");
+			return "sms core exception well catched";
+		}
 	}
 
 	public String create(SMSCampaignView smsCampaignView) {
@@ -41,7 +50,7 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 		return null;
 	}
 
-	public String find(@PathVariable("reference") long reference) {
+	public String delete(@PathVariable("reference") long reference) {
 		return null;
 	}
 }

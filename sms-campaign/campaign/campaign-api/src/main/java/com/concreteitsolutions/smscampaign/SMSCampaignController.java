@@ -29,7 +29,7 @@ public interface SMSCampaignController {
 	SMSCampaignView editSMSCampaign(@PathVariable("reference") final long reference, final SMSCampaignView smsCampaignView);
 
 	@RequestMapping(value = "/{reference}", method = RequestMethod.POST)
-	String find(@PathVariable("reference") final long reference);
+	String delete(@PathVariable("reference") final long reference);
 
 	/**
 	 * TODO: Create a controller for unknown paths

@@ -14,7 +14,7 @@ public class SMSCampaignDatabase {
 		String messageInfo83 = "TEST- CAMPAGNE SMS \n Jouez à notre jeu et gagnez beaucoup de cadeaux jusqu'au 25 Décembre 2015.\n"
 				+ "Rendez-vous sur ce lien pour jouer : http://google.fr";
 
-		smsCampaignList.add(new SMSCampaign(1, "Info83-Cadeaux", "Info 83", messageInfo83, 500 ));
+		smsCampaignList.add(new SMSCampaign(1, "Info83-Cadeaux", "Info 83", messageInfo83, 1 ));
 	}
 	public static List<SMSCampaign> getSMSCampaigns() {
 		return smsCampaignList;

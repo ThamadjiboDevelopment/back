@@ -34,6 +34,7 @@ public class CreditDaoImpl implements CreditDao {
 					iSendProClient.getForEntity(new URI(HOST + CREDIT_AND_QUANTITY_PATH), CreditResponse.class);
 
 			System.out.println(creditResponseResponseEntity.getBody());
+			return CreditResponse.toCredit(creditResponseResponseEntity.getBody());
 
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

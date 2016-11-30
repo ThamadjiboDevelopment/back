@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 
 import com.concreteitsolutions.generic.prospect.ProspectProcess;
 import com.concreteitsolutions.generic.prospect.model.Prospect;
+import com.concreteitsolutions.sms.SMSCoreFunctionalException;
 import com.concreteitsolutions.sms.SMSService;
+import com.concreteitsolutions.sms.credit.model.Credit;
 
 @Component
 public class SMSCampaignProcessImpl implements SMSCampaignProcess {
@@ -34,14 +36,21 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
 		SMSCampaign smsCampaign = smsCampaignService.findById(reference);
 
 		/* 2. Credit check */
+		Credit credit = smsService.findRemainingCreditAndSMS();
+		if (credit.getRemainingSMSQuantity() < smsCampaign.getProspectsLength()) {
+		//	throw new SMSCampaignFunctionalException("Credit non suffisant pour envoyer les sms, veuillez recharger svp.");
+		} else {
+			throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.EMPTY_LOGIN_FIELD, "le login fourni : \"\" n'est pas valide");
+		}
 
 		/* 3. */
 		List<Prospect> prospectList = prospectProcess.find(null, smsCampaign.getProspectsLength());
-
+		System.out.println("Prospect list : "+prospectList.toString());
 		/* 4. Send the campaign */
 
 		List<String> phoneNumberList = phoneNumbersFromProspects(prospectList);
-		smsService.sendMultiple(phoneNumberList, smsCampaign.getSmsContent());
+		System.out.println("phone Number list : "+phoneNumberList.toString());
+		smsService.sendMultiple(phoneNumberList, smsCampaign.getSmsContent(), smsCampaign.getCustomerName());
 
 		/* 5. Return the result of the campaign */
 

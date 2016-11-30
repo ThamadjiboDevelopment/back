@@ -2,14 +2,12 @@ package com.concreteitsolutions.generic.prospect.model;
 
 import java.util.List;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@ToString
 public class Prospect {
 
 	private final String firstName;

@@ -1,0 +1,8 @@
+com\concreteitsolutions\smscampaign\SMSCampaignService.class
+com\concreteitsolutions\smscampaign\SMSCampaign.class
+com\concreteitsolutions\smscampaign\SMSCampaignFunctionalException.class
+com\concreteitsolutions\smscampaign\SMSCampaignRepositoryImplMock.class
+com\concreteitsolutions\smscampaign\SMSCampaignDatabase.class
+com\concreteitsolutions\smscampaign\FunctionalException.class
+com\concreteitsolutions\smscampaign\SMSCampaignServiceImpl.class
+com\concreteitsolutions\smscampaign\SMSCampaignRepository.class

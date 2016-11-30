@@ -1,0 +1,7 @@
+- Créer un module transverse ( framework-services ?) pour definir les objets generiques tels que FunctionalException, TechnicalException, CustomError ...
+
+- Bien definir les classes Exceptions à utiliser en fonction du contexte (Arbitrer SMSCoreException et SMSCampaignException..)
+
+ - Ajouter APIResponse dans framework-api
+
+ -
