@@ -1,5 +1,7 @@
 package com.concreteitsolutions.smscampaign;
 
+import com.concreteitsolutions.smscampaign.model.SMSCampaign;
+
 public interface SMSCampaignProcess {
 
 	/**
@@ -10,7 +12,8 @@ public interface SMSCampaignProcess {
 	 * Send the referenced sms campaign
 	 * @param reference The identifier for the sms campaign
 	 */
-	void send(long reference);
+	void send(final Long reference);
 
+	SMSCampaign edit(final long reference, final SMSCampaign smsCampaign);
 
 }

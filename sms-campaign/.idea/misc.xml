@@ -13,6 +13,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file url="file://$PROJECT_DIR$/sms-campaign-container/overlays" />
+    <file url="file://$PROJECT_DIR$/sms-campaign-container/overlays" />
     <file type="web" url="file://$PROJECT_DIR$/campaign/campaign-api" />
     <file type="web" url="file://$PROJECT_DIR$/sms-campaign-container" />
     <file type="web" url="file://$PROJECT_DIR$/sms-core/sms-core-api" />

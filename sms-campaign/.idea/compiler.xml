@@ -25,7 +25,8 @@
         <module name="campaign-api" />
         <module name="campaign-process" />
         <module name="campaign-services" />
-        <module name="framework-api" />
+        <module name="common-framework-api" />
+        <module name="common-framework-core" />
         <module name="i-send-pro" />
         <module name="prospect-process" />
         <module name="prospect-services" />
@@ -39,26 +40,28 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="campaign" target="1.5" />
-      <module name="campaign-api" target="1.5" />
-      <module name="campaign-process" target="1.5" />
-      <module name="campaign-services" target="1.5" />
-      <module name="framework-api" target="1.5" />
-      <module name="i-send-pro" target="1.7" />
-      <module name="prospect" target="1.5" />
-      <module name="prospect-process" target="1.5" />
-      <module name="prospect-services" target="1.5" />
-      <module name="sms-campaign" target="1.5" />
-      <module name="sms-campaign-container" target="1.5" />
-      <module name="sms-core" target="1.5" />
-      <module name="sms-core-api" target="1.5" />
-      <module name="sms-core-process" target="1.5" />
-      <module name="sms-core-services" target="1.5" />
-      <module name="third-parties" target="1.5" />
-      <module name="user-module" target="1.5" />
-      <module name="user-module-api" target="1.5" />
-      <module name="user-module-process" target="1.5" />
-      <module name="user-module-services" target="1.5" />
+      <module name="campaign" target="1.8" />
+      <module name="campaign-api" target="1.8" />
+      <module name="campaign-process" target="1.8" />
+      <module name="campaign-services" target="1.8" />
+      <module name="common-framework" target="1.8" />
+      <module name="common-framework-api" target="1.8" />
+      <module name="common-framework-core" target="1.8" />
+      <module name="i-send-pro" target="1.8" />
+      <module name="prospect" target="1.8" />
+      <module name="prospect-process" target="1.8" />
+      <module name="prospect-services" target="1.8" />
+      <module name="sms-campaign" target="1.8" />
+      <module name="sms-campaign-container" target="1.8" />
+      <module name="sms-core" target="1.8" />
+      <module name="sms-core-api" target="1.8" />
+      <module name="sms-core-process" target="1.8" />
+      <module name="sms-core-services" target="1.8" />
+      <module name="third-parties" target="1.8" />
+      <module name="user-module" target="1.8" />
+      <module name="user-module-api" target="1.8" />
+      <module name="user-module-process" target="1.8" />
+      <module name="user-module-services" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

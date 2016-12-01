@@ -61,7 +61,7 @@ public class SMSDaoImpl implements SMSDao {
 			SMSResponse smsResponseError = null;
 			try {
 				smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
-				throw new SMSCoreFunctionalException("");
+				throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.CAMPAIGN_CREATION_ERROR);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

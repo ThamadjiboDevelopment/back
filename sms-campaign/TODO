@@ -1,7 +1,14 @@
-- Créer un module transverse ( framework-services ?) pour definir les objets generiques tels que FunctionalException, TechnicalException, CustomError ...
+- Mettre les exceptions issues du third party et laisser java remonter les exceptions jusqu'à la couche controller
 
-- Bien definir les classes Exceptions à utiliser en fonction du contexte (Arbitrer SMSCoreException et SMSCampaignException..)
+-- Corriger le probleme de mapping de la reponse dans le thirdparty et envoyer une exception depuis ce niveau
 
- - Ajouter APIResponse dans framework-api
+-- Add business rules while creating, editing, archiving camapaign
+
+
+xxx DONE- Créer un module transverse ( framework-services ?) pour definir les objets generiques tels que FunctionalException, TechnicalException, CustomError ...
+
+xxx DONE - Bien definir les classes Exceptions à utiliser en fonction du contexte (Arbitrer SMSCoreException et SMSCampaignException..)
+
+xxx DONE - Ajouter APIResponse dans framework-api
 
  -

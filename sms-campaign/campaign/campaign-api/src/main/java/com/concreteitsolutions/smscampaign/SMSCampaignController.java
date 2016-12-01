@@ -1,35 +1,39 @@
 package com.concreteitsolutions.smscampaign;
 
+import com.concreteitsolutions.framework.api.model.APIResponse;
 import com.concreteitsolutions.smscampaign.model.SMSCampaignSearchView;
 import com.concreteitsolutions.smscampaign.model.SMSCampaignView;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/campaigns")
 public interface SMSCampaignController {
 
+	@Valid
 	@RequestMapping(value = "/{reference}/send", method = RequestMethod.POST)
-	String sendCampaign(@PathVariable("reference") final long reference);
+	ResponseEntity<APIResponse> sendCampaign(@PathVariable("reference") @NotBlank String reference);
 
+	@Valid
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	String create(SMSCampaignView smsCampaignView);
+	ResponseEntity<APIResponse> create(@Valid @RequestBody SMSCampaignView smsCampaignView);
 
-	@RequestMapping(value = "/search/{reference}", method = RequestMethod.GET)
-	SMSCampaignView findByReference(@PathVariable("reference") final long reference);
+	@RequestMapping(value = "/{reference}", method = RequestMethod.GET)
+	ResponseEntity<APIResponse> findByReference(@PathVariable("reference") final String reference);
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	List<SMSCampaignView> find(final SMSCampaignSearchView smsCampaignSearchView);
 
 	@RequestMapping(value = "/{reference}/edit", method = RequestMethod.PATCH)
-	SMSCampaignView editSMSCampaign(@PathVariable("reference") final long reference, final SMSCampaignView smsCampaignView);
+	ResponseEntity<APIResponse>  editSMSCampaign(@PathVariable("reference") final String reference, @RequestBody final SMSCampaignView smsCampaignView);
 
 	@RequestMapping(value = "/{reference}", method = RequestMethod.POST)
-	String delete(@PathVariable("reference") final long reference);
+	ResponseEntity<APIResponse> delete(@PathVariable("reference") final String reference);
 
 	/**
 	 * TODO: Create a controller for unknown paths

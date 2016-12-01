@@ -3,12 +3,13 @@ package com.concreteitsolutions.smscampaign;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.concreteitsolutions.smscampaign.exceptions.SMSCampaignFunctionalException;
+import com.concreteitsolutions.smscampaign.model.SMSCampaign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.concreteitsolutions.generic.prospect.ProspectProcess;
 import com.concreteitsolutions.generic.prospect.model.Prospect;
-import com.concreteitsolutions.sms.SMSCoreFunctionalException;
 import com.concreteitsolutions.sms.SMSService;
 import com.concreteitsolutions.sms.credit.model.Credit;
 
@@ -30,7 +31,7 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
 		this.prospectProcess = prospectProcess;
 	}
 
-	public void send(long reference) {
+	public void send(final Long reference) {
 
 		/* 1. Get the sms campaign by reference */
 		SMSCampaign smsCampaign = smsCampaignService.findById(reference);
@@ -38,9 +39,7 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
 		/* 2. Credit check */
 		Credit credit = smsService.findRemainingCreditAndSMS();
 		if (credit.getRemainingSMSQuantity() < smsCampaign.getProspectsLength()) {
-		//	throw new SMSCampaignFunctionalException("Credit non suffisant pour envoyer les sms, veuillez recharger svp.");
-		} else {
-			throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.EMPTY_LOGIN_FIELD, "le login fourni : \"\" n'est pas valide");
+			throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.SMS_CREDIT_USED_UP, "Crédit insuffisant pour cette campagne. Le crédit dont vous disposez vous permet d'envoyer jusqu'à  "+credit.getRemainingSMSQuantity() +" sms");
 		}
 
 		/* 3. */
@@ -56,6 +55,23 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
 
 	}
 
+	public SMSCampaign edit(long reference, SMSCampaign smsCampaign) {
+
+		SMSCampaign smsCampaignToEdit = smsCampaignService.findById(reference);
+
+		SMSCampaign editedSMSCampaign = smsCampaignService.edit(smsCampaignToEdit);
+
+		return editedSMSCampaign;
+	}
+
+
+	/**
+	 * ------------------------------
+	 *
+	 * PRIVATE FUNCTIONS
+	 *
+	 * ------------------------------
+	 */
 	private List<String> phoneNumbersFromProspects(List<Prospect> prospects) {
 		List<String> phoneNumbers = new ArrayList<String>();
 		for (Prospect p : prospects) {
