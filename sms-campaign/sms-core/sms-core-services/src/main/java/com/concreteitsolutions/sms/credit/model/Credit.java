@@ -12,5 +12,5 @@ public class Credit {
 
 	private String credit;
 
-	private String remainingSMSQuantity;
+	private long remainingSMSQuantity;
 }

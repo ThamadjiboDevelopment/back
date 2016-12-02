@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +19,7 @@ import com.concreteitsolutions.sms.model.MultipleSMS;
 import com.concreteitsolutions.sms.model.SMSResponse;
 import com.concreteitsolutions.sms.model.SingleSMS;
 
+@Component
 public class SMSDaoImpl implements SMSDao {
 
 	private RestTemplate iSendProClient;
@@ -38,7 +40,7 @@ public class SMSDaoImpl implements SMSDao {
 		this.iSendProClient = iSendProClient;
 	}
 
-	public void sendOne(final String telNumber, final String smsContent, final String sender) throws IOException {
+	public void sendOne(final String telNumber, final String smsContent, final String sender) {
 
 		SingleSMS singleSms = new SingleSMS(KEY_ID, smsContent, telNumber, sender);
 
@@ -56,8 +58,13 @@ public class SMSDaoImpl implements SMSDao {
 		} catch(HttpClientErrorException e) {
 			System.out.println("erreur requete");
 			System.out.println(e.getResponseBodyAsString());
-			SMSResponse smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
-			System.out.println(smsResponseError);
+			SMSResponse smsResponseError = null;
+			try {
+				smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
+				throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.CAMPAIGN_CREATION_ERROR);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 

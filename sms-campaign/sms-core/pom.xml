@@ -10,7 +10,6 @@
 	<artifactId>sms-core</artifactId>
 	<packaging>pom</packaging>
 
-
     <modules>
         <module>sms-core-api</module>
         <module>sms-core-process</module>

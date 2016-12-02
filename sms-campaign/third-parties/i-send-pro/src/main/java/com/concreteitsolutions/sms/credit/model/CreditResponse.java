@@ -24,6 +24,10 @@ public class CreditResponse {
 		private final String credit;
 
 		@JsonProperty("quantite")
-		private final String remainingSMSQuantity;
+		private final long remainingSMSQuantity;
+	}
+
+	public static Credit toCredit(final CreditResponse creditResponse){
+		return new Credit(creditResponse.getContent().getCredit(), creditResponse.getContent().getRemainingSMSQuantity());
 	}
 }

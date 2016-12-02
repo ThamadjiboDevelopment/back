@@ -6,7 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/campaign/campaign-api/campaign-api.iml" filepath="$PROJECT_DIR$/campaign/campaign-api/campaign-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/campaign/campaign-process/campaign-process.iml" filepath="$PROJECT_DIR$/campaign/campaign-process/campaign-process.iml" />
       <module fileurl="file://$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" filepath="$PROJECT_DIR$/campaign/campaign-services/campaign-services.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framework-api/framework-api.iml" filepath="$PROJECT_DIR$/framework-api/framework-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-framework/common-framework.iml" filepath="$PROJECT_DIR$/common-framework/common-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-framework/common-framework-api/common-framework-api.iml" filepath="$PROJECT_DIR$/common-framework/common-framework-api/common-framework-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-framework/common-framework-core/common-framework-core.iml" filepath="$PROJECT_DIR$/common-framework/common-framework-core/common-framework-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" filepath="$PROJECT_DIR$/third-parties/i-send-pro/i-send-pro.iml" />
       <module fileurl="file://$PROJECT_DIR$/prospect/prospect.iml" filepath="$PROJECT_DIR$/prospect/prospect.iml" />
       <module fileurl="file://$PROJECT_DIR$/prospect/prospect-process/prospect-process.iml" filepath="$PROJECT_DIR$/prospect/prospect-process/prospect-process.iml" />

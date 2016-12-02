@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.concrete-it-solutions</groupId>
-			<artifactId>framework-api</artifactId>
+			<artifactId>common-framework-api</artifactId>
 		</dependency>
 	</dependencies>
 

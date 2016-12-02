@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class ProspectRepositorImplMock implements ProspectRepository {
 
 	public List<Prospect> find() {
-		Prospect prospect = new Prospect("Tahirou", "DJIBO", "0635338517", Arrays.asList(PreferenceCategory.SPORT));
+		Prospect prospect = new Prospect("Tahirou", "DJIBO", "0635338517", Arrays.asList(PreferenceCategory.SPORT), null);
 
 		return Arrays.asList(prospect);
 	}

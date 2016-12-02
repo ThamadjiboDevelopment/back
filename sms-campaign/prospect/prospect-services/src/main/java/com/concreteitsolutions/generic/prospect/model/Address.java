@@ -1,18 +1,23 @@
 package com.concreteitsolutions.generic.prospect.model;
 
-/**
- * Created by tahirou on 26/11/2016.
- */
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Address {
 
-    private final String country;
+	private final String country;
 
-    private final String postalCode;
+	private final long postalCode;
 
-    private final String firstLine;
+	private final String town;
 
-    private final String complementaryAddress;
+	private final String firstLine;
+
+	private final String complementaryInformations;
+
 }

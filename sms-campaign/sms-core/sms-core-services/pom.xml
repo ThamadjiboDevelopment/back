@@ -10,4 +10,10 @@
 
     <artifactId>sms-core-services</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.concrete-it-solutions</groupId>
+            <artifactId>common-framework-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>
