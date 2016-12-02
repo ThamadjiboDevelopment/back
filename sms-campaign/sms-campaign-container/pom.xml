@@ -17,12 +17,12 @@
 			<artifactId>sms-core-api</artifactId>
 			<type>war</type>
 		</dependency>
-
+<!--
 		<dependency>
 			<groupId>com.concrete-it-solutions</groupId>
 			<artifactId>user-module-api</artifactId>
 			<type>war</type>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.concrete-it-solutions</groupId>

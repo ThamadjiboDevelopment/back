@@ -10,7 +10,7 @@
 		<module>sms-core</module>
 		<module>campaign</module>
 		<module>framework-api</module>
-		<module>user-module</module>
+	<!--	<module>user-module</module>  -->
 		<module>prospect</module>
 		<module>sms-campaign-container</module>
 		<module>third-parties</module>
@@ -97,6 +97,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- USER MODULE -->
+            <!--
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>user-module</artifactId>
@@ -118,6 +119,8 @@
 				<artifactId>user-module-services</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
+
+            -->
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>framework-api</artifactId>
