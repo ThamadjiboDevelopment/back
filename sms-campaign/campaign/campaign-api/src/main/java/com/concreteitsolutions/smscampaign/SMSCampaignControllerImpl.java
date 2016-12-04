@@ -31,6 +31,7 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 		this.smsCampaignProcess = smsCampaignProcess;
 		this.smsCampaignService = smsCampaignService;
 	}
+
 	/**
 	 *		SEND
 	 **/
@@ -69,7 +70,7 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 
 		System.out.println("Well entered in sms campaign creation");
 
-		long createdSMSCampaignId = smsCampaignService.create(smsCampaignView.toSMSCampaign());
+		long createdSMSCampaignId = smsCampaignProcess.create(smsCampaignView.toSMSCampaign());
 
 		APIResponse smsCampaignCreationResponse = APIResponse.builder()
 				.entity("Resource well created")
@@ -86,13 +87,34 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 	 **/
 	public ResponseEntity<APIResponse> findByReference(@PathVariable("reference") final String reference) {
 
-		SMSCampaignView foundCampaignView =  SMSCampaignView.from(smsCampaignService.findById(Long.parseLong(reference)));
+		APIResponse campaignResponse = null;
 
-		APIResponse foundCampaignEntity = APIResponse.builder()
-				.entity(foundCampaignView)
-				.build();
+		try {
+			SMSCampaignView smsCampaignView =  SMSCampaignView.from(smsCampaignService.findById(Long.parseLong(reference)));
 
-		return ResponseEntity.ok(foundCampaignEntity);
+			campaignResponse = APIResponse.builder()
+					.entity(smsCampaignView)
+					.build();
+
+			return ResponseEntity.ok(campaignResponse);
+
+		} catch (SMSCampaignFunctionalException e){
+
+			APIException apiException = APIException.builder()
+					.exceptionType(ExceptionType.FUNCTIONAL)
+					.code(e.getError())
+					.message(e.getError().message())
+					.developerMessage(e.getMessage())
+					.build();
+
+			APIResponse apiResponse = APIResponse.builder()
+					.entity(apiException)
+					.build();
+
+			HttpStatus httpStatus = determineHTTPStatus(apiException.getExceptionType());
+
+			return ResponseEntity.status(httpStatus).body(apiResponse);
+		}
 
 	}
 
@@ -108,14 +130,33 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 	/**
 	 *		EDIT
 	 **/
-	public ResponseEntity<APIResponse> editSMSCampaign(@PathVariable("reference") String reference, @RequestBody SMSCampaignView smsCampaignView) {
-		SMSCampaignView editedSMSCampaignView = SMSCampaignView.from(smsCampaignProcess.edit(Long.parseLong(reference), smsCampaignView.toSMSCampaign()));
+	public ResponseEntity<APIResponse> edit(@PathVariable("reference") String reference, @RequestBody SMSCampaignView SMSCampaignView) {
 
-		APIResponse editedSMSCampaignResponse = APIResponse.builder()
-				.entity(editedSMSCampaignView)
-				.build();
+		APIResponse campaignEditResponse = null;
 
-		return ResponseEntity.ok(editedSMSCampaignResponse);
+		try {
+
+			SMSCampaignView editedSMSCampaignView = SMSCampaignView.from(smsCampaignProcess.edit(Long.parseLong(reference), SMSCampaignView.toSMSCampaign()));
+
+			campaignEditResponse = APIResponse.builder()
+					.entity(editedSMSCampaignView)
+					.build();
+
+			return ResponseEntity.ok(campaignEditResponse);
+
+		} catch(SMSCampaignFunctionalException e) {
+
+			APIException campaignException = APIException.builder().exceptionType(ExceptionType.FUNCTIONAL)
+					.code(e.getError()).message(e.getError().message()).developerMessage(e.getMessage()).build();
+
+			campaignEditResponse = APIResponse.builder().exception(campaignException).build();
+
+			HttpStatus httpStatus = determineHTTPStatus(campaignException.getExceptionType());
+
+			return ResponseEntity.status(httpStatus).body(campaignEditResponse);
+
+		}
+
 	}
 
 

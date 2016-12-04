@@ -2,8 +2,11 @@ package com.concreteitsolutions.smscampaign;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import com.concreteitsolutions.commonframework.core.exceptions.tmp.LOG;
 import com.concreteitsolutions.smscampaign.exceptions.SMSCampaignFunctionalException;
+import com.concreteitsolutions.smscampaign.model.CampaignState;
 import com.concreteitsolutions.smscampaign.model.SMSCampaign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,67 +19,98 @@ import com.concreteitsolutions.sms.credit.model.Credit;
 @Component
 public class SMSCampaignProcessImpl implements SMSCampaignProcess {
 
-	private final SMSService smsService;
+    private final SMSService smsService;
 
-	private final SMSCampaignService smsCampaignService;
+    private final SMSCampaignService smsCampaignService;
 
-	private final ProspectProcess prospectProcess;
+    private final ProspectProcess prospectProcess;
 
-	@Autowired
-	public SMSCampaignProcessImpl(SMSService smsService,
-			SMSCampaignServiceImpl smsCampaignService,
-			ProspectProcess prospectProcess) {
-		this.smsService = smsService;
-		this.smsCampaignService = smsCampaignService;
-		this.prospectProcess = prospectProcess;
-	}
+    @Autowired
+    public SMSCampaignProcessImpl(SMSService smsService,
+                                  SMSCampaignServiceImpl smsCampaignService,
+                                  ProspectProcess prospectProcess) {
+        this.smsService = smsService;
+        this.smsCampaignService = smsCampaignService;
+        this.prospectProcess = prospectProcess;
+    }
 
-	public void send(final Long reference) {
+    public long create(SMSCampaign smsCampaign) {
+
+        smsCampaign.setState(CampaignState.CREATED);
+        LOG.debug("Check state change", smsCampaign);
+
+        return smsCampaignService.create(smsCampaign);
+    }
+
+    public SMSCampaign edit(long reference, SMSCampaign smsCampaign) {
+
+        SMSCampaign smsCampaignToEdit = smsCampaignService.findById(reference);
+
+        if(smsCampaignToEdit.getState() == CampaignState.IN_PROGRESS) {
+            throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.CAN_NOT_EDIT_CAMPAIGN_WHILE_BEING_SENT);
+        }
+
+        smsCampaign.setReference(smsCampaignToEdit.getReference());
+
+        SMSCampaign editedSMSCampaign = smsCampaignService.edit(smsCampaign);
+
+        return editedSMSCampaign;
+    }
+
+
+    public long delete(long reference) {
+        return 0;
+    }
+
+    public void send(final Long reference) {
+
 
 		/* 1. Get the sms campaign by reference */
-		SMSCampaign smsCampaign = smsCampaignService.findById(reference);
+        SMSCampaign smsCampaign = smsCampaignService.findById(reference);
+
+        smsCampaign.setState(CampaignState.IN_PROGRESS);
+        smsCampaignService.edit(smsCampaign);
 
 		/* 2. Credit check */
-		Credit credit = smsService.findRemainingCreditAndSMS();
-		if (credit.getRemainingSMSQuantity() < smsCampaign.getProspectsLength()) {
-			throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.SMS_CREDIT_USED_UP, "Crédit insuffisant pour cette campagne. Le crédit dont vous disposez vous permet d'envoyer jusqu'à  "+credit.getRemainingSMSQuantity() +" sms");
-		}
+        Credit credit = smsService.findRemainingCreditAndSMS();
+        if (credit.getRemainingSMSQuantity() < smsCampaign.getProspectsLength()) {
+            throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.SMS_CREDIT_USED_UP, "Crédit insuffisant pour cette campagne. Le crédit dont vous disposez vous permet d'envoyer jusqu'à  " + credit.getRemainingSMSQuantity() + " sms");
+        }
 
 		/* 3. */
-		List<Prospect> prospectList = prospectProcess.find(null, smsCampaign.getProspectsLength());
-		System.out.println("Prospect list : "+prospectList.toString());
-		/* 4. Send the campaign */
+        List<Prospect> prospectList = prospectProcess.find(null, smsCampaign.getProspectsLength());
+        LOG.debug("Prospect list : ", prospectList.toString());
+        /* 4. Send the campaign */
 
-		List<String> phoneNumberList = phoneNumbersFromProspects(prospectList);
-		System.out.println("phone Number list : "+phoneNumberList.toString());
-		smsService.sendMultiple(phoneNumberList, smsCampaign.getSmsContent(), smsCampaign.getCustomerName());
+        try {
+            TimeUnit.SECONDS.sleep(30);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-		/* 5. Return the result of the campaign */
+        List<String> phoneNumberList = phoneNumbersFromProspects(prospectList);
+        LOG.debug("phone Number list : " + phoneNumberList.toString());
+        smsService.sendMultiple(phoneNumberList, smsCampaign.getSmsContent(), smsCampaign.getCustomerName());
 
-	}
+        /* Update campaign status */
+        smsCampaign.setState(CampaignState.SENT);
+        smsCampaignService.edit(smsCampaign);
 
-	public SMSCampaign edit(long reference, SMSCampaign smsCampaign) {
-
-		SMSCampaign smsCampaignToEdit = smsCampaignService.findById(reference);
-
-		SMSCampaign editedSMSCampaign = smsCampaignService.edit(smsCampaignToEdit);
-
-		return editedSMSCampaign;
-	}
+    }
 
 
-	/**
-	 * ------------------------------
-	 *
-	 * PRIVATE FUNCTIONS
-	 *
-	 * ------------------------------
-	 */
-	private List<String> phoneNumbersFromProspects(List<Prospect> prospects) {
-		List<String> phoneNumbers = new ArrayList<String>();
-		for (Prospect p : prospects) {
-			phoneNumbers.add(p.getPhoneNumber());
-		}
-		return phoneNumbers;
-	}
+    /**
+     * ------------------------------
+     * <p>
+     * PRIVATE FUNCTIONS
+     * <p>
+     * ------------------------------
+     */
+    private List<String> phoneNumbersFromProspects(List<Prospect> prospects) {
+        List<String> phoneNumbers = new ArrayList<String>();
+        for (Prospect p : prospects) {
+            phoneNumbers.add(p.getPhoneNumber());
+        }
+        return phoneNumbers;
+    }
 }

@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 
+import com.concreteitsolutions.commonframework.core.exceptions.tmp.LOG;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,76 +23,105 @@ import com.concreteitsolutions.sms.model.SingleSMS;
 @Component
 public class SMSDaoImpl implements SMSDao {
 
-	private RestTemplate iSendProClient;
+    private RestTemplate iSendProClient;
 
-	private static final String KEY_ID = "8129be2a2bd7e774a9604b1c0e591df5";
+    private static final String KEY_ID = "8129be2a2bd7e774a9604b1c0e591df5";
 
-	private static final String HOST = "https://apirest.isendpro.com/cgi-bin";
+    private static final String HOST = "https://apirest.isendpro.com/cgi-bin";
 
-	private static final String SINGLE_SMS_PATH = "/sms";
+    private static final String SINGLE_SMS_PATH = "/sms";
 
-	private static final String MULTIPLE_SMS_PATH = "/smsmulti";
+    private static final String MULTIPLE_SMS_PATH = "/smsmulti";
 
-	// To place in IsendProTestFactory class
-	public static final String MOCK_URL = "http://demo8280665.mockable.io";
+    // To place in IsendProTestFactory class
+    public static final String MOCK_URL = "http://demo8280665.mockable.io";
 
-	@Autowired
-	public SMSDaoImpl(RestTemplate iSendProClient) {
-		this.iSendProClient = iSendProClient;
-	}
+    @Autowired
+    public SMSDaoImpl(RestTemplate iSendProClient) {
+        this.iSendProClient = iSendProClient;
+    }
 
-	public void sendOne(final String telNumber, final String smsContent, final String sender) {
+    public void sendOne(final String telNumber, final String smsContent, final String sender) {
 
-		SingleSMS singleSms = new SingleSMS(KEY_ID, smsContent, telNumber, sender);
+        SingleSMS singleSms = new SingleSMS(KEY_ID, smsContent, telNumber, sender);
 
-		try {
-			RequestEntity<SingleSMS> singleSMSRequest = RequestEntity.post(new URI(HOST + SINGLE_SMS_PATH))
-					.contentType(MediaType.APPLICATION_JSON).body(singleSms);
+        try {
 
-			ResponseEntity<SMSResponse> smsResponseResponseEntity = iSendProClient.exchange(singleSMSRequest, SMSResponse.class);
-	//		ResponseEntity<String> smsResponseResponseEntity = iSendProClient.exchange(singleSMSRequest, String.class);
+            RequestEntity<SingleSMS> singleSMSRequest = RequestEntity.post(createURI(HOST + SINGLE_SMS_PATH))
+                    .contentType(MediaType.APPLICATION_JSON).body(singleSms);
 
-			System.out.println("Sms response : " + smsResponseResponseEntity.toString());
+            ResponseEntity<SMSResponse> smsResponseResponseEntity = iSendProClient.exchange(singleSMSRequest, SMSResponse.class);
 
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch(HttpClientErrorException e) {
-			System.out.println("erreur requete");
-			System.out.println(e.getResponseBodyAsString());
-			SMSResponse smsResponseError = null;
-			try {
-				smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
-				throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.CAMPAIGN_CREATION_ERROR);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-	}
+            LOG.debug("sms response: ", smsResponseResponseEntity.toString());
 
-	public void sendMultiple(final List<String> phoneNumberList, final String smsContent, final String sender) {
-		System.out.println("Sending multiple sms");
-		MultipleSMS multipleSMS = new MultipleSMS(KEY_ID, phoneNumberList, smsContent, sender);
+        } catch (HttpClientErrorException e) {
+            LOG.debug("Request error, sending technical exception ...");
+            LOG.debug(e.getResponseBodyAsString());
 
-		try {
-			RequestEntity<MultipleSMS> multipleSMSRequest = RequestEntity.post(new URI(HOST + MULTIPLE_SMS_PATH))
-					.contentType(MediaType.APPLICATION_JSON).body(multipleSMS);
+            SMSResponse smsResponseError = null;
 
-			ResponseEntity<SMSResponse> smsResponse = iSendProClient.exchange(multipleSMSRequest, SMSResponse.class);
+            smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
 
-			System.out.println("Sms response : " + smsResponse.toString());
+            e.printStackTrace();
+            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.UNIQUE_SMS_SEND_ERROR, "Code d'erreur de isendpro : "+smsResponseError.getState().getSmsResponseStateContent().getContent().get(0));
+        }
+    }
 
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-	}
+    public void sendMultiple(final List<String> phoneNumberList, final String smsContent, final String sender) {
+        LOG.debug("Sending multiple sms");
 
-	private SMSResponse retrieveSMSResponseErrorFromJson(String smsResponseString) throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		SMSResponse smsResponse = new SMSResponse();
+        MultipleSMS multipleSMS = new MultipleSMS(KEY_ID, phoneNumberList, smsContent, sender);
 
-		smsResponse = objectMapper.readValue(smsResponseString, SMSResponse.class);
+        try {
 
-		System.out.println("Deserializing .. :"+smsResponse);
-		return smsResponse;
-	}
+            RequestEntity<MultipleSMS> multipleSMSRequest = RequestEntity.post(URI.create(HOST + MULTIPLE_SMS_PATH))
+                    .contentType(MediaType.APPLICATION_JSON).body(multipleSMS);
+
+            ResponseEntity<SMSResponse> smsResponse = iSendProClient.exchange(multipleSMSRequest, SMSResponse.class);
+
+            LOG.debug("Sms response : " + smsResponse.toString());
+
+        } catch (HttpClientErrorException e) {
+            e.printStackTrace();
+            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.CAMPAIGN_CREATION_ERROR);
+
+        }
+    }
+
+    /**
+     * ------------------------
+     * <p>
+     * PRIVATE FUNCTIONS
+     * <p>
+     * ------------------------
+     */
+
+    private URI createURI(final String uri) {
+
+        try {
+            URI newURI = new URI(uri);
+
+            return newURI;
+
+        } catch (URISyntaxException e) {
+            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.URI_CREATION_ERROR, "URL passé = "+ uri);
+        }
+    }
+
+    private SMSResponse retrieveSMSResponseErrorFromJson(String smsResponseString) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        SMSResponse smsResponse = new SMSResponse();
+
+        try {
+
+            LOG.debug("Deserializing .. :" + smsResponse);
+            smsResponse = objectMapper.readValue(smsResponseString, SMSResponse.class);
+
+        } catch (IOException e) {
+            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.I_SEND_PRO_RESPONSE_DESERIALIZATION_ERROR);
+        }
+
+
+        return smsResponse;
+    }
 }

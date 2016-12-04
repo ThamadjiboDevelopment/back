@@ -17,4 +17,8 @@ public class ProspectSearchCriteria {
 
 	private final Gender gender;
 
+	// Campaing state
+
+	//
+
 }

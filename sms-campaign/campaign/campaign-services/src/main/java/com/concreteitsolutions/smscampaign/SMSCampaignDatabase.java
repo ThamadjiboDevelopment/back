@@ -10,41 +10,51 @@ import lombok.Data;
 @Data
 public class SMSCampaignDatabase {
 
-	public static List<SMSCampaign> smsCampaignList;
+    public static List<SMSCampaign> smsCampaignList;
 
-	public static int smsCampaignCounter = 0;
+    public static int smsCampaignCounter = 0;
 
-	static {
-		smsCampaignList = new ArrayList<SMSCampaign>();
-	}
+    static {
+        smsCampaignList = new ArrayList<SMSCampaign>();
+    }
 
-	public static List<SMSCampaign> getSMSCampaigns() {
-		return smsCampaignList;
-	}
+    public static List<SMSCampaign> getSMSCampaigns() {
+        return smsCampaignList;
+    }
 
-	public static long createSMSCampaign(SMSCampaign smsCampaign) {
+    public static SMSCampaign getSMSCampaignByReference(long reference) {
+        int tableSize = smsCampaignList.size();
+        int index = Integer.valueOf(Long.toString(reference));
 
-		System.out.println("Creating new SMS Campaign in database : "+smsCampaign);
-		smsCampaignList.add(smsCampaignCounter, smsCampaign);
-		smsCampaign.setReference(smsCampaignCounter);
-		int currentSmsCampaignId = smsCampaignCounter;
-		smsCampaignCounter += 1;
+        if(tableSize >= index+1) {
+            return smsCampaignList.get(index);
+        }
+        return null;
+    }
 
-		return currentSmsCampaignId;
-	}
+    public static long createSMSCampaign(SMSCampaign smsCampaign) {
 
-	public static SMSCampaign edit(SMSCampaign smsCampaign) {
-		smsCampaignList.remove(smsCampaign.getReference());
-		smsCampaignList.add(Long.valueOf(smsCampaign.getReference()).intValue(), smsCampaign);
+        System.out.println("Creating new SMS Campaign in database : " + smsCampaign);
+        smsCampaignList.add(smsCampaignCounter, smsCampaign);
+        smsCampaign.setReference(smsCampaignCounter);
+        int currentSmsCampaignId = smsCampaignCounter;
+        smsCampaignCounter += 1;
 
-		return smsCampaign;
-	}
+        return currentSmsCampaignId;
+    }
 
-	public static long delete(long reference) {
-		smsCampaignList.remove(Long.valueOf(reference).intValue());
+    public static SMSCampaign edit(SMSCampaign smsCampaign) {
+     //   smsCampaignList.add(smsCampaign.getReference(), smsCampaign.getReference());
+        smsCampaignList.add(Long.valueOf(smsCampaign.getReference()).intValue(), smsCampaign);
 
-		return reference;
-	}
+        return smsCampaign;
+    }
+
+    public static long delete(long reference) {
+        smsCampaignList.remove(Long.valueOf(reference).intValue());
+
+        return reference;
+    }
 
 
 }

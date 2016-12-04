@@ -17,24 +17,24 @@ import lombok.NoArgsConstructor;
 public class SMSResponse {
 
 	@JsonProperty(value = "etat", required = true)
-	private final SMSResponseState state;
+	private SMSResponseState state;
 
 	@Data
 	@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 	@AllArgsConstructor
 	@JsonIgnoreProperties(ignoreUnknown = true)
-	private class SMSResponseState {
+	public class SMSResponseState {
 
 		@JsonProperty(value = "etat", required = true)
-		private final SMSResponseStateContent smsResponseStateContent;
+		private SMSResponseStateContent smsResponseStateContent;
 
 		@Data
 		@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 		@AllArgsConstructor
 		@JsonIgnoreProperties(ignoreUnknown = true)
-		private class SMSResponseStateContent {
+		public class SMSResponseStateContent {
 
-			private final List<Content> content;
+			private List<Content> content;
 		}
 
 		@Data

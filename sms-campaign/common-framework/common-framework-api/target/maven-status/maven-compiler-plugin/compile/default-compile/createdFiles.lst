@@ -1,2 +1,7 @@
-com\concreteitsolutions\framework\api\AppConfig.class
-com\concreteitsolutions\framework\api\WebAppInitializer.class
+com/concreteitsolutions/framework/api/model/APIResponse.class
+com/concreteitsolutions/framework/api/model/ExceptionType.class
+com/concreteitsolutions/framework/api/AppConfig.class
+com/concreteitsolutions/framework/api/model/APIException$APIExceptionBuilder.class
+com/concreteitsolutions/framework/api/WebAppInitializer.class
+com/concreteitsolutions/framework/api/model/APIException.class
+com/concreteitsolutions/framework/api/model/APIResponse$APIResponseBuilder.class

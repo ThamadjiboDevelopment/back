@@ -4,7 +4,7 @@ import com.concreteitsolutions.smscampaign.model.SMSCampaign;
 
 public interface SMSCampaignRepository {
 
-	SMSCampaign find(final Long reference);
+	SMSCampaign find(final long reference);
 
 	long create(final SMSCampaign smsCampaign);
 

@@ -17,7 +17,9 @@ public class SMSCampaignFunctionalException extends CustomException {
 	@Getter
 	public enum Error implements CustomError {
 
-		SMS_CREDIT_USED_UP("Le crédit SMS dont vous disposez ne vous permet pas de réaliser cette campagne. Veuillez recharger SVP.");
+		SMS_CREDIT_USED_UP("Le crédit SMS dont vous disposez ne vous permet pas de réaliser cette campagne. Veuillez recharger SVP."),
+		CAN_NOT_EDIT_CAMPAIGN_WHILE_BEING_SENT("Impossible de modifier cette campagne car elle est en cours d'envoi."),
+		SMS_CAMPAIGN_RESOURCE_NOT_FOUND("La campagne SMS n'existe pas");
 
 		public final String message;
 

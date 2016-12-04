@@ -9,12 +9,11 @@
 	<modules>
 		<module>sms-core</module>
 		<module>campaign</module>
-		<module>framework-api</module>
-	<!--	<module>user-module</module>  -->
+		<module>common-framework</module>
+	<!--	<module>user-module</module> -->
 		<module>prospect</module>
 		<module>sms-campaign-container</module>
 		<module>third-parties</module>
-
 	</modules>
 
 	<!--common dependencies -->

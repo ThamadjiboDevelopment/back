@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SMSCampaignRepositoryImplMock implements SMSCampaignRepository {
 
-	public SMSCampaign find(Long reference) {
-		return SMSCampaignDatabase.getSMSCampaigns().get(Integer.valueOf(Long.toString(reference)));
+	public SMSCampaign find(long reference) {
+		return SMSCampaignDatabase.getSMSCampaignByReference(reference);
 	}
 
 	public long create(SMSCampaign smsCampaign) {
@@ -15,7 +15,7 @@ public class SMSCampaignRepositoryImplMock implements SMSCampaignRepository {
 	}
 
 	public SMSCampaign edit(SMSCampaign smsCampaign) {
-		return null;
+		return SMSCampaignDatabase.edit(smsCampaign);
 	}
 
 	public long delete(long reference) {
