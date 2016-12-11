@@ -17,6 +17,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.concrete-it-solutions</groupId>
+			<artifactId>common-framework-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.concrete-it-solutions</groupId>
 			<artifactId>i-send-pro</artifactId>
 		</dependency>
 		<dependency>

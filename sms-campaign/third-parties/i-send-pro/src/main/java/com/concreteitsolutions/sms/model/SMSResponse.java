@@ -34,14 +34,14 @@ public class SMSResponse {
 		@JsonIgnoreProperties(ignoreUnknown = true)
 		public class SMSResponseStateContent {
 
-			private List<Content> content;
+			private Content content;
 		}
 
 		@Data
 		@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 		@AllArgsConstructor
 		@JsonIgnoreProperties(ignoreUnknown = true)
-		private class Content {
+		public class Content {
 
 			@JsonProperty(value = "code", required = true)
 			private SMSStatusCode statusCode;

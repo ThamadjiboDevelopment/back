@@ -22,7 +22,7 @@ public class IsendProTestFactory {
 		List<String> phoneNumberList = new ArrayList<String>();
 
 		phoneNumberList.add(UNIQUE_SMS_TEL_ME);
-		phoneNumberList.add(UNIQUE_SMS_TEL_MOUSTAPHA);
+	//	phoneNumberList.add(UNIQUE_SMS_TEL_MOUSTAPHA);
 	//	phoneNumberList.add(UNIQUE_SMS_TEL_ME);
 
 		return phoneNumberList;

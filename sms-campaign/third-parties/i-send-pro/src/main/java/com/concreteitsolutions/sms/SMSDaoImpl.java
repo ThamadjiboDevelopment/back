@@ -63,7 +63,7 @@ public class SMSDaoImpl implements SMSDao {
             smsResponseError = retrieveSMSResponseErrorFromJson(e.getResponseBodyAsString());
 
             e.printStackTrace();
-            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.UNIQUE_SMS_SEND_ERROR, "Code d'erreur de isendpro : "+smsResponseError.getState().getSmsResponseStateContent().getContent().get(0));
+            throw new SMSCoreTechnicalException(SMSCoreTechnicalException.Error.UNIQUE_SMS_SEND_ERROR, "Code d'erreur de isendpro : "+smsResponseError.getState().getSmsResponseStateContent().getContent());
         }
     }
 
