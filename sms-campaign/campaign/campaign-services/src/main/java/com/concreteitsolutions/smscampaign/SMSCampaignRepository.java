@@ -1,14 +1,16 @@
 package com.concreteitsolutions.smscampaign;
 
 import com.concreteitsolutions.smscampaign.model.SMSCampaign;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SMSCampaignRepository {
+import java.util.List;
 
-	SMSCampaign find(final long reference);
+public interface SMSCampaignRepository extends JpaRepository<SMSCampaign, Long>{
 
-	long create(final SMSCampaign smsCampaign);
+    SMSCampaign save(SMSCampaign smsCampaign);
 
-	SMSCampaign edit(final SMSCampaign smsCampaign);
+    List<SMSCampaign> findAll();
 
-	long delete(final long reference);
+    SMSCampaign findByReference(final long reference);
+
 }

@@ -9,32 +9,36 @@ import com.concreteitsolutions.smscampaign.model.SMSCampaign;
 @Component
 public class SMSCampaignServiceImpl implements SMSCampaignService {
 
-	private final SMSCampaignRepository smsCampaignRepository;
+    private final SMSCampaignRepository smsCampaignRepository;
 
-	@Autowired
-	public SMSCampaignServiceImpl(SMSCampaignRepository smsCampaignRepository) {
-		this.smsCampaignRepository = smsCampaignRepository;
-	}
+    @Autowired
+    public SMSCampaignServiceImpl(SMSCampaignRepository smsCampaignRepository) {
+        this.smsCampaignRepository = smsCampaignRepository;
+    }
 
-	public SMSCampaign findById(Long reference) {
+    public SMSCampaign findById(Long reference) {
 
-		SMSCampaign smsCampaign = smsCampaignRepository.find(reference);
+        SMSCampaign smsCampaign = smsCampaignRepository.findByReference(reference);
 
-		if (smsCampaign != null) {
-			return smsCampaign;
-		}
-		throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.SMS_CAMPAIGN_RESOURCE_NOT_FOUND, "Id de la campagne : "+ reference);
-	}
+        if (smsCampaign != null) {
+            return smsCampaign;
+        }
+        throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.SMS_CAMPAIGN_RESOURCE_NOT_FOUND, "Id de la campagne : " + reference);
+    }
 
-	public long create(SMSCampaign smsCampaign) {
-		return smsCampaignRepository.create(smsCampaign);
-	}
+    public long create(SMSCampaign smsCampaign) {
+        return smsCampaignRepository.save(smsCampaign).getReference();
+    }
 
-	public SMSCampaign edit(SMSCampaign smsCampaign) {
-		return smsCampaignRepository.edit(smsCampaign);
-	}
+    public SMSCampaign edit(SMSCampaign smsCampaign) {
 
-	public long delete(long reference) {
-		return smsCampaignRepository.delete(reference);
-	}
+        return smsCampaignRepository.save(smsCampaign);
+    }
+
+    public long delete(long reference) {
+
+        smsCampaignRepository.delete(reference);
+
+        return reference;
+    }
 }

@@ -2,9 +2,7 @@ package com.concreteitsolutions.smscampaign.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Data
 @Builder
@@ -13,6 +11,8 @@ import javax.persistence.Enumerated;
 @Entity
 public class SMSCampaign {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private long reference;
 
 	private final String name;
@@ -21,7 +21,7 @@ public class SMSCampaign {
 
 	private final String smsContent;
 
-	private final Integer prospectsLength;
+	private Integer prospectsLength;
 
 	@Enumerated(EnumType.STRING)
 	private CampaignState state;
