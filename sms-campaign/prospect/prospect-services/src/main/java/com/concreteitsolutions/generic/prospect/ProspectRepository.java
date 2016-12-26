@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProspectRepository extends JpaRepository<Prospect, Long> {
 
 	Prospect findById(final long id);
+
+	Prospect save(Prospect prospect);
 }

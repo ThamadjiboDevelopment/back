@@ -16,7 +16,8 @@ public class ExternalDataTechnicalException extends CustomException {
 
     public enum ExternalDataError implements CustomError {
 
-        FILE_INPUT_ERROR;
+        FILE_INPUT_ERROR,
+        EXTERNAL_DATA_FORMAT_NOT_SUPPORTED;
 
         public String message() {
             return this.name();

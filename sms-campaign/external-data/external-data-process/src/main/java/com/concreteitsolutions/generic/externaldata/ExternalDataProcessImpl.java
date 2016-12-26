@@ -1,6 +1,8 @@
 package com.concreteitsolutions.generic.externaldata;
 
+import com.concreteitsolutions.commonframework.core.exceptions.tmp.LOG;
 import com.concreteitsolutions.commonframework.core.externaldata.ExternalDataSource;
+import com.concreteitsolutions.generic.externaldata.model.ExternalData;
 import com.concreteitsolutions.generic.prospect.ProspectService;
 import com.concreteitsolutions.generic.prospect.model.Prospect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,16 @@ public class ExternalDataProcessImpl implements ExternalDataProcess {
 
     public void importExternalData(final InputStream file, ExternalDataSource externalDataSource) {
 
-        List<Object> objectList = externalDataService.retrieveDataFromFile(file, externalDataSource);
+        List<ExternalData> externalDataList = externalDataService.retrieveDataFromExternalFile(file, externalDataSource);
+
+        LOG.debug("External data list retrieved : ", externalDataList);
 
         switch(externalDataSource.getDataModel()) {
 
             case Prospect.DATA_MODEL_NAME:
 
-                List<Prospect> prospectList = findProspectsFromRetrievedDatas(objectList);
+                List<Prospect> prospectList = findProspectsFromRetrievedDatas(externalDataList);
+                LOG.debug("List of prospects to save :", prospectList);
 
                 prospectService.saveAll(prospectList);
 
@@ -45,12 +50,18 @@ public class ExternalDataProcessImpl implements ExternalDataProcess {
      *
      * PRIVATE FUNCTIONS
      */
-    private List<Prospect> findProspectsFromRetrievedDatas(List<Object> objectList) {
+    private List<Prospect> findProspectsFromRetrievedDatas(List<ExternalData> externalDataList) {
 
         List<Prospect> prospects = new ArrayList<>();
 
-        for (Object obj : objectList) {
-            prospects.add((Prospect) obj);
+        for (ExternalData externalData: externalDataList) {
+
+            Prospect currentProspect = Prospect.builder()
+                    .firstName(externalData.getCol1())
+                    .phoneNumber(externalData.getCol2())
+                    .build();
+
+            prospects.add(currentProspect);
         }
         return prospects;
     }
