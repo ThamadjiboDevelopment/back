@@ -15,6 +15,10 @@
 			<groupId>com.concrete-it-solutions</groupId>
 			<artifactId>common-framework-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.concrete-it-solutions</groupId>
+			<artifactId>sms-core-services</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

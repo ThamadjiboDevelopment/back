@@ -1,14 +1,20 @@
 package com.concreteitsolutions.generic.prospect.model;
 
-import java.util.List;
-
 import lombok.*;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
-@ToString
+@Entity
 public class Prospect {
+
+    public static final String DATA_MODEL_NAME = "PROSPECT";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private final long id;
 
 	private final String firstName;
 
@@ -16,7 +22,9 @@ public class Prospect {
 
 	private final String phoneNumber;
 
-	private final List<PreferenceCategory> preferenceCategoryList;
+    private final String email;
 
-	private final Address address;
+//	private final List<PreferenceCategory> preferenceCategoryList;
+
+//	private final Address address;
 }

@@ -15,11 +15,11 @@ public class SMSCampaign {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long reference;
 
-	private final String name;
+	private String name;
 
-	private final String customerName;
+	private String customerName;
 
-	private final String smsContent;
+	private String smsContent;
 
 	private Integer prospectsLength;
 

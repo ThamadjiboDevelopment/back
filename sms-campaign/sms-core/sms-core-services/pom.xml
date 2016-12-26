@@ -16,4 +16,5 @@
             <artifactId>common-framework-core</artifactId>
         </dependency>
     </dependencies>
+
 </project>

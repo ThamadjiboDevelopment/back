@@ -26,10 +26,10 @@ public interface SMSCampaignController {
 	@RequestMapping(value = "/{reference}/edit", method = RequestMethod.PUT)
 	ResponseEntity<APIResponse> edit(@PathVariable("reference") final String reference, @RequestBody final SMSCampaignView smsCampaignView);
 
-	@RequestMapping(value = "/{reference}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{reference}/delete", method = RequestMethod.POST)
 	ResponseEntity<APIResponse> delete(@PathVariable("reference") final String reference);
 
-	/**
-	 * TODO: Create a controller for unknown paths
-	 */
+	@RequestMapping(value = "*")
+	ResponseEntity<APIResponse> unknownPath();
+
 }

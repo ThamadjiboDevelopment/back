@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import com.concreteitsolutions.commonframework.core.exceptions.CommonTechnicalException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -168,12 +169,28 @@ public class SMSCampaignControllerImpl implements SMSCampaignController {
 		long deletedSMSCampaignId = smsCampaignService.delete(Long.parseLong(reference));
 
 		APIResponse deletedSMSCampaignResponse = APIResponse.builder()
-				.entity("La campagne avec le numéro de référence : "+deletedSMSCampaignId + "a été bien supprimé" )
+				.entity("La campagne avec le numéro de référence : "+deletedSMSCampaignId + "a été bien supprimée" )
 				.build();
 
 		return ResponseEntity.ok(deletedSMSCampaignResponse);
 	}
 
+	@Override
+	public ResponseEntity<APIResponse> unknownPath() {
+
+		APIException apiException = APIException.builder()
+				.code(CommonTechnicalException.CommonError.UNKNOWN_PATH)
+				.message("Le path de l'api n'existe pas.")
+				.developerMessage("Ce controller n'existe pas")
+				.exceptionType(ExceptionType.TECHNICAL)
+				.build();
+
+		APIResponse response = APIResponse.builder()
+				.entity(apiException)
+				.build();
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+	}
 
 
 	/**-----------------------------

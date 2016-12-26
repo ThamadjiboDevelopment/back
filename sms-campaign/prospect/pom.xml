@@ -10,10 +10,10 @@
 	<artifactId>prospect</artifactId>
 	<packaging>pom</packaging>
 
-
     <modules>
         <module>prospect-process</module>
         <module>prospect-services</module>
+		<module>prospect-api</module>
     </modules>
 
 </project>

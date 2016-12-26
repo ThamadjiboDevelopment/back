@@ -14,6 +14,7 @@
 		<module>prospect</module>
 		<module>sms-campaign-container</module>
 		<module>third-parties</module>
+		<module>external-data</module>
 	</modules>
 
 	<!--common dependencies -->
@@ -260,6 +261,33 @@
 				<artifactId>prospect-services</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>prospect-api</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+
+			<!-- EXTERNAL DATA -->
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>external-data</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>external-data-api</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>external-data-process</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.concrete-it-solutions</groupId>
+				<artifactId>external-data-services</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
 
 			<!-- THIRD PARTIES -->
 			<dependency>
@@ -274,7 +302,6 @@
 			</dependency>
 
 			<!-- CONTAINER -->
-
 			<dependency>
 				<groupId>com.concrete-it-solutions</groupId>
 				<artifactId>sms-campaign-container</artifactId>

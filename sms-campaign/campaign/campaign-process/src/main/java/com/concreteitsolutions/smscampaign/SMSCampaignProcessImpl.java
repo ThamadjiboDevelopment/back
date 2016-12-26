@@ -49,12 +49,15 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
         if(smsCampaignToEdit.getState() == CampaignState.IN_PROGRESS) {
             throw new SMSCampaignFunctionalException(SMSCampaignFunctionalException.Error.CAN_NOT_EDIT_CAMPAIGN_WHILE_BEING_SENT);
         }
-
+        smsCampaignToEdit.setProspectsLength(smsCampaign.getProspectsLength());
+        smsCampaignToEdit.setName(smsCampaign.getName());
+        smsCampaignToEdit.setCustomerName(smsCampaign.getCustomerName());
+        smsCampaign.setSmsContent(smsCampaign.getSmsContent());
         smsCampaign.setReference(smsCampaignToEdit.getReference());
 
-        SMSCampaign editedSMSCampaign = smsCampaignService.edit(smsCampaign);
+        smsCampaignService.edit(smsCampaignToEdit);
 
-        return editedSMSCampaign;
+        return smsCampaignToEdit;
     }
 
 
@@ -63,7 +66,6 @@ public class SMSCampaignProcessImpl implements SMSCampaignProcess {
     }
 
     public void send(final Long reference) {
-
 
 		/* 1. Get the sms campaign by reference */
         SMSCampaign smsCampaign = smsCampaignService.findById(reference);

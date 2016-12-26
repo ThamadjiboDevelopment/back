@@ -21,6 +21,16 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="sms-core-api" />
+    <orderEntry type="module" module-name="external-data-api" />
+    <orderEntry type="module" module-name="common-framework-api" />
+    <orderEntry type="module" module-name="common-framework-core" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="module" module-name="external-data-process" />
+    <orderEntry type="module" module-name="external-data-services" />
+    <orderEntry type="module" module-name="prospect-process" />
+    <orderEntry type="module" module-name="prospect-services" />
+    <orderEntry type="module" module-name="prospect-api" />
     <orderEntry type="module" module-name="campaign-api" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" level="project" />

@@ -1,16 +1,20 @@
 package com.concreteitsolutions.sms;
 
+import com.concreteitsolutions.sms.model.CreditView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SMSControllerImpl {
+public class SMSControllerImpl implements SMSController {
 
-	public String sendSms(String content) {
-		System.out.println("Sending smscampaign having content : " + content);
-		return "smscampaign sent";
+	private final SMSService smsService;
+
+	@Autowired
+	public SMSControllerImpl(SMSService smsService) {
+		this.smsService = smsService;
 	}
 
-	public String sendSms() {
-		return null;
+	public CreditView findRemainingCredit() {
+		return CreditView.from(smsService.findRemainingCreditAndSMS());
 	}
 }

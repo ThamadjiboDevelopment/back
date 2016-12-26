@@ -28,7 +28,7 @@ public class SMSCampaignFunctionalException extends CustomException {
 		}
 
 		public String message() {
-			return message;
+			return this.name();
 		}
 	}
 }

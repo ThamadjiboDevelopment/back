@@ -8,10 +8,10 @@ import com.concreteitsolutions.generic.prospect.model.Prospect;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProspectRepositorImplMock implements ProspectRepository {
+public class ProspectRepositorImplMock {
 
 	public List<Prospect> find() {
-		Prospect prospect = new Prospect("Tahirou", "DJIBO", "0635338517", Arrays.asList(PreferenceCategory.SPORT), null);
+		Prospect prospect = new Prospect(1L,"Tahirou", "DJIBO", "0635338517", null); //Arrays.asList(PreferenceCategory.SPORT));
 
 		return Arrays.asList(prospect);
 	}

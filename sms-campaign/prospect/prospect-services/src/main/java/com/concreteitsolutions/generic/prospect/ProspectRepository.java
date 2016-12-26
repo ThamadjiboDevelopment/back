@@ -3,13 +3,9 @@ package com.concreteitsolutions.generic.prospect;
 import java.util.List;
 
 import com.concreteitsolutions.generic.prospect.model.Prospect;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProspectRepository {
+public interface ProspectRepository extends JpaRepository<Prospect, Long> {
 
-	/**
-	 * Search with JPA criterias LATER ...
-	 * 
-	 * @return
-	 */
-	List<Prospect> find();
+	Prospect findById(final long id);
 }

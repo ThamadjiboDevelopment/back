@@ -1,7 +1,9 @@
 package com.concreteitsolutions.generic.prospect;
 
+import java.io.InputStream;
 import java.util.List;
 
+import com.concreteitsolutions.commonframework.core.externaldata.ExternalDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,19 @@ public class ProspectServiceImpl implements ProspectService {
 		this.prospectRepository = prospectRepository;
 	}
 
-	public List<Prospect> find(ProspectSearchCriteria criteria, Integer length) {
-		return prospectRepository.find();
+	public List<Prospect> find(long length) {
+		return prospectRepository.findAll();
 	}
+
+	public List<Prospect> find(ProspectSearchCriteria criteria, Integer length) {
+		return null;
+	}
+
+	public void saveAll(List<Prospect> prospects) {
+
+		for(Prospect prospect : prospects) {
+			prospectRepository.save(prospect);
+		}
+	}
+
 }
